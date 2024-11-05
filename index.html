@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super epic stuff</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #000;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        #galaxy-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at center, #1B2735 0%, #090A0F 100%);
+        }
+
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle var(--duration) infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        header {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 20px 0;
+            text-align: center;
+            text-shadow: 0 0 10px #00ffcc;
+            animation: glow 2s infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px #00ffcc; }
+            50% { text-shadow: 0 0 20px #00ffcc, 0 0 30px #00ffcc; }
+        }
+
+        main {
+            max-width: 1200px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #00ffcc;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .project {
+            background: rgba(51, 51, 51, 0.8);
+            border: 2px solid #00ffcc;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .project:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 255, 204, 0.3);
+        }
+
+        .project a {
+            display: block;
+            text-decoration: none;
+            color: #00ffcc;
+            padding: 20px;
+        }
+
+        .project h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .project img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .description {
+            margin-top: 15px;
+            color: #cccccc;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .ripple {
+            position: absolute;
+            border: 2px solid rgba(0, 255, 204, 0.5);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: rippleEffect 1s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+
+        @keyframes rippleEffect {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+            100% {
+                width: 500%;
+                height: 500%;
+                opacity: 0;
+            }
+        }
+
+        .project.clicking {
+            transform: scale(1.5);
+            opacity: 0;
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #fade-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1s ease;
+            z-index: 9999;
+        }
+
+        #fade-overlay.active {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div id="fade-overlay"></div>
+    <div id="galaxy-background"></div>
+    
+    <header id="header">Hi!</header>
+
+    <main>
+        <section id="portfolio">
+            <h2>My Websites</h2>
+            <div class="projects">
+                <div class="project">
+                    <a href="https://cat.skibiditoilet.nl" target="_blank">
+                        <h3>Cat.skibiditoilet.nl</h3>
+                        <img src="img1.png" alt="Example Website 1 Screenshot">
+                        <p class="description">Super cool site with cool music</p>
+                    </a>
+                </div>
+                <div class="project">
+                    <a href="https://Porsche.skibiditoilet.nl" target="_blank">
+                        <h3>Porsche.skibiditoilet.nl</h3>
+                        <img src="img2.png" alt="Example Website 2 Screenshot">
+                        <p class="description">Porsche.</p>
+                    </a>
+                </div>
+                <div class="project">
+                    <a href="https://Skibiditoilet.nl" target="_blank">
+                        <h3>Skibiditoilet.nl</h3>
+                        <img src="img3.png" alt="Example Website 3 Screenshot">
+                        <p class="description">Im honestly disgusted by myself because of this site.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // List of "Hello" in different languages
+        const greetings = [
+            "Hello", "Hola", "Bonjour", "Hallo", "Ciao", "Olá", "Hej", "Aloha", "Konnichiwa", "Nǐ hǎo", 
+            "Szia", "Marhaba", "Shalom", "Merhaba", "Salam", "Yassou", "God dag", "Jambo", "Sawubona", 
+            "Selamat", "Bula", "Namaste", "Privet", "Sawatdee", "Ahoy", "Zdravstvuyte", "Annyeong", 
+            "Dobrý deň", "Xin chào", "Salut"
+        ];
+
+        function createStars() {
+            const galaxy = document.getElementById('galaxy-background');
+            for (let i = 0; i < 200; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.width = `${Math.random() * 3}px`;
+                star.style.height = star.style.width;
+                star.style.setProperty('--duration', `${Math.random() * 3 + 1}s`);
+                galaxy.appendChild(star);
+            }
+        }
+
+        function createRippleEffect(event, element) {
+            const rect = element.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            
+            const ripple = document.createElement('div');
+            ripple.className = 'ripple';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            
+            element.appendChild(ripple);
+            
+            ripple.addEventListener('animationend', () => {
+                ripple.remove();
+            });
+        }
+
+        function handleProjectClick(event) {
+            event.preventDefault();
+            const project = event.currentTarget;
+            const link = project.querySelector('a').href;
+            
+            // Create ripple effect
+            createRippleEffect(event, project);
+            
+            // Add clicking class for zoom effect
+            project.classList.add('clicking');
+            
+            // Fade to black
+            setTimeout(() => {
+                document.getElementById('fade-overlay').classList.add('active');
+            }, 500);
+            
+            // Redirect after animations
+            setTimeout(() => {
+                window.location.href = link;
+            }, 1250);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            createStars();
+            
+            // Header animation
+            const header = document.getElementById('header');
+            setInterval(() => {
+                header.textContent = greetings[Math.floor(Math.random() * greetings.length)];
+            }, 1000);
+            
+            // Add click handlers to projects
+            const projects = document.querySelectorAll('.project');
+            projects.forEach(project => {
+                project.addEventListener('click', handleProjectClick);
+            });
+        });
+    </script>
+</body>
+</html
